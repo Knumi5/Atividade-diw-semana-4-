@@ -1,13 +1,21 @@
 /* Fonte para o corpo do texto (Inter) */
+:root {
+    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Playfair Display', serif;
+    --cor-primaria: #E8622A;
+    --cor-texto: #222;
+    --cor-fundo: #fff;
+    
+}
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 16px;
     line-height: 1.5;
 }
 
 /* Fonte para todos os títulos (Playfair Display) */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-heading);
     font-weight: 700;
 }
 

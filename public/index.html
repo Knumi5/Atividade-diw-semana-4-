@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <!-- =========================
+         METADADOS E FONTES
+    ========================== -->
     <meta charset="UTF-8">
     <title>Meu Projeto</title>
-    <!-- ✅ Fontes corretas -->
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Playfair+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- ✅ Classe bate com CSS -->
+    <!-- =========================
+         CABEÇALHO / HEADER FIXO
+    ========================== -->
     <header class="header-fixo">
         <div class="container-menu">
             <nav class="menu-navegação">
-                <!-- ✅ Classe adicionada -->
+                <!-- =========================
+                     MENU DE NAVEGAÇÃO
+                ========================== -->
                 <ul class="lista-menu">
-                    <!-- ✅ Classes adicionadas nos links -->
                     <li><a href="#" class="item-menu">Home</a></li>
                     <li><a href="#" class="item-menu">Sobre</a></li>
                     <li><a href="#" class="item-menu">Contato</a></li>
 
+                    <!-- =========================
+                         FORMULÁRIO DE PESQUISA
+                    ========================== -->
                     <form id="form-pesquisa">
                         <div class="campo">
                             <label for="termo">Termo de Pesquisa</label>
                             <input type="text" id="termo" name="termo" placeholder="Digite sua pesquisa">
+
                             <select id="categoria" name="categoria">
                                 <option value="">Selecione uma categoria</option>
                                 <option value="livro">Livro</option>
@@ -36,17 +45,23 @@
                             </select>
                         </div>
                     </form>
-                        <button type="submit">Buscar</button>
-                    </form>
+
+                    <button type="submit">Buscar</button>
+
+                    <!-- =========================
+                         FORMULÁRIO DE NEWSLETTER
+                    ========================== -->
                     <form id="form-newsletter">
                         <label for="nome">Nome</label>
                         <input type="text" id="nome" name="nome" placeholder="Digite teu nome">
+
                         <input type="email" id="email" name="email" placeholder="Digite teu e-mail">
+
                         <div class="campo checkbox">
-                        <label for="consentimento">
-                        <input type="checkbox" id="consentimento" name="consentimento">
-                        Aceito receber newsletters
-                        </label>
+                            <label for="consentimento">
+                                <input type="checkbox" id="consentimento" name="consentimento">
+                                Aceito receber newsletters
+                            </label>
                         </div>
                     </form>
                 </ul>
@@ -54,23 +69,34 @@
         </div>
     </header>
 
+    <!-- =========================
+         HERO / APRESENTAÇÃO PRINCIPAL
+    ========================== -->
     <section class="hero-section">
-        <h1>Bem-vindo ao Meu Projeto</h1>
+        <h1>Conheça autores que transformam conhecimento e livros que <strong>inspiram.</strong></h1>
     </section>
 
+    <!-- =========================
+         SEÇÃO SOBRE O PROJETO
+    ========================== -->
     <section class="sobre-o-projeto">
         <h2>Sobre o Projeto</h2>
         <p>Esta é uma seção sobre o projeto.</p>
     </section>
 
+    <!-- =========================
+         CARD DE AUTOR
+    ========================== -->
     <article class="card-autor">
         <img src="public/assets/wireframe.png" alt="Foto do autor">
         <h3>Nome do Autor</h3>
         <p>Biografia do autor</p>
     </article>
 
+    <!-- =========================
+         CARD DE LIVRO
+    ========================== -->
     <article class="card-livro">
-        <!-- ✅ Tag img fechada corretamente -->
         <img src="public/assets/wireframe.png" alt="Título do Livro">
         <h3>Título do Livro</h3>
         <p>Descrição do livro</p>
