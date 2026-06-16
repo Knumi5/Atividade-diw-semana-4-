@@ -7,6 +7,14 @@
     --cor-fundo: #fff;
     
 }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+button{
+      background-color: var(--cor-primaria);
+}
 body {
     font-family: var(--font-body);
     font-size: 16px;
@@ -48,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500; /* Lembra da fonte Inter? Ela vai se aplicar aqui automaticamente */
 }
 main {
-    padding-top: 80px; /* Ajuste esse valor de acordo com a altura do seu header */
+    margin-top: 100px;
 }
 
 
