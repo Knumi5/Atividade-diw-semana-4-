@@ -1,101 +1,987 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Meu Projeto</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Playfair+Display&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biblioteca do Conhecimento</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --laranja: #E8722A;
+    --laranja-escuro: #C45E1A;
+    --creme: #FAF7F2;
+    --creme-medio: #F0EBE0;
+    --texto: #1A1A1A;
+    --texto-suave: #555;
+    --borda: #DDD4C0;
+    --branco: #FFFFFF;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --radius: 8px;
+    --radius-lg: 14px;
+    --sombra: 0 2px 12px rgba(0,0,0,0.07);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--texto);
+    background: var(--branco);
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--branco);
+    border-bottom: 1px solid var(--borda);
+    padding: 0 2rem;
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    gap: 2rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--texto);
+    flex-shrink: 0;
+  }
+
+  .logo-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .logo-text h1 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .logo-text p {
+    font-size: 0.7rem;
+    color: var(--texto-suave);
+    font-weight: 400;
+  }
+
+  nav { display: flex; align-items: center; gap: 0.25rem; }
+
+  nav a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--texto-suave);
+    text-decoration: none;
+    padding: 0.4rem 0.85rem;
+    border-radius: var(--radius);
+    transition: color 0.2s, background 0.2s;
+  }
+
+  nav a:hover { color: var(--laranja); }
+  nav a.active { color: var(--laranja); border-bottom: 2px solid var(--laranja); border-radius: 0; }
+
+  .btn-busca {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--texto-suave);
+    padding: 0.4rem;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+  }
+  .btn-busca:hover { color: var(--laranja); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--creme);
+    padding: 5rem 2rem;
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-img-placeholder {
+    background: var(--creme-medio);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-lg);
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.75rem;
+    color: var(--borda);
+  }
+
+  .hero-img-placeholder svg { width: 64px; opacity: 0.4; }
+
+  .hero-content h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    color: var(--texto);
+  }
+
+  .hero-content h2 em {
+    font-style: italic;
+    color: var(--laranja);
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+    color: var(--texto-suave);
+    margin-bottom: 2rem;
+    max-width: 400px;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--laranja);
+    color: var(--branco);
+    border: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--laranja-escuro); transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--texto);
+    border: 1.5px solid var(--borda);
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { border-color: var(--laranja); color: var(--laranja); transform: translateY(-1px); }
+
+  .hero-dots { display: flex; gap: 8px; margin-top: 2rem; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--borda); cursor: pointer; transition: background 0.2s; }
+  .dot.active { background: var(--laranja); }
+
+  /* ── SOBRE ── */
+  .sobre {
+    padding: 5rem 2rem;
+    background: var(--branco);
+  }
+
+  .sobre-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .sobre-icon {
+    width: 100px;
+    flex-shrink: 0;
+  }
+
+  .sobre-text h2 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .sobre-text h2::before,
+  .sobre-text h2::after {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 2px;
+    background: var(--laranja);
+    opacity: 0.5;
+    margin: 0 0.25rem;
+  }
+
+  .sobre-text p { font-size: 1rem; color: var(--texto-suave); }
+
+  /* ── SECTIONS GENÉRICOS ── */
+  section { padding: 5rem 2rem; }
+
+  .section-title {
+    text-align: center;
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .section-title span {
+    display: inline-block;
+    border-bottom: 2.5px solid var(--laranja);
+    padding-bottom: 2px;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--texto-suave);
+    margin-bottom: 3rem;
+    font-size: 0.9rem;
+  }
+
+  /* ── AUTORES ── */
+  .autores { background: var(--creme); }
+
+  .autores-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .autor-card {
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .autor-card:hover { box-shadow: var(--sombra); transform: translateY(-2px); }
+
+  .autor-card-top { display: flex; align-items: center; gap: 1rem; }
+
+  .autor-avatar {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: var(--creme-medio);
+    border: 1.5px solid var(--borda);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--borda);
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--laranja);
+  }
+
+  .autor-info h3 {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .autor-info p { font-size: 0.8rem; color: var(--texto-suave); }
+
+  .autor-card-desc {
+    font-size: 0.82rem;
+    color: var(--texto-suave);
+    line-height: 1.5;
+    border-top: 1px solid var(--creme-medio);
+    padding-top: 0.75rem;
+  }
+
+  .btn-ver-perfil {
+    display: inline-block;
+    border: 1px solid var(--borda);
+    color: var(--texto);
+    padding: 0.45rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    font-family: var(--sans);
+    transition: border-color 0.2s, color 0.2s;
+    align-self: flex-start;
+  }
+  .btn-ver-perfil:hover { border-color: var(--laranja); color: var(--laranja); }
+
+  /* ── LIVROS ── */
+  .livros { background: var(--branco); }
+
+  .livros-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .livro-card {
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .livro-card:hover { box-shadow: var(--sombra); transform: translateY(-2px); }
+
+  .livro-capa {
+    background: var(--creme-medio);
+    border-bottom: 1px solid var(--borda);
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--borda);
+    position: relative;
+  }
+
+  .livro-capa-label {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    background: rgba(250,247,242,0.92);
+    padding: 0.35rem 0.5rem;
+    border-radius: var(--radius);
+    font-family: var(--serif);
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--texto);
+  }
+
+  .livro-info { padding: 1rem; }
+
+  .livro-autor { font-size: 0.75rem; color: var(--texto-suave); margin-bottom: 0.4rem; }
+
+  .estrelas { color: var(--laranja); font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 0.75rem; }
+
+  .livro-acoes { display: flex; align-items: center; gap: 0.5rem; }
+
+  .btn-ver-livro {
+    flex: 1;
+    background: none;
+    border: 1px solid var(--borda);
+    color: var(--texto);
+    padding: 0.4rem 0;
+    border-radius: var(--radius);
+    font-size: 0.78rem;
+    font-weight: 500;
+    font-family: var(--sans);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ver-livro:hover { border-color: var(--laranja); color: var(--laranja); }
+
+  .btn-salvar {
+    background: none;
+    border: 1px solid var(--borda);
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--texto-suave);
+    transition: color 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+  }
+  .btn-salvar:hover { color: var(--laranja); border-color: var(--laranja); }
+
+  /* ── PESQUISA ── */
+  .pesquisa {
+    background: var(--creme);
+    padding: 4rem 2rem;
+  }
+
+  .pesquisa-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .pesquisa-form {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+    background: var(--branco);
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius-lg);
+    padding: 0.75rem 1rem;
+  }
+
+  .pesquisa-input-wrap {
+    flex: 1 1 220px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  .pesquisa-input-wrap svg { color: var(--borda); flex-shrink: 0; }
+
+  .pesquisa-input {
+    border: none;
+    outline: none;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--texto);
+    background: transparent;
+    width: 100%;
+  }
+  .pesquisa-input::placeholder { color: var(--borda); }
+
+  .pesquisa-select {
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 0.5rem 0.75rem;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+    background: var(--branco);
+    cursor: pointer;
+    outline: none;
+    flex-shrink: 0;
+  }
+
+  .pesquisa-btn {
+    background: var(--laranja);
+    color: var(--branco);
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: var(--sans);
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .pesquisa-btn:hover { background: var(--laranja-escuro); }
+
+  /* ── NEWSLETTER ── */
+  .newsletter {
+    background: var(--branco);
+    padding: 5rem 2rem;
+  }
+
+  .newsletter-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .newsletter-icon { width: 90px; flex-shrink: 0; }
+
+  .newsletter-content h2 {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+
+  .newsletter-form { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+
+  .newsletter-input {
+    flex: 1 1 180px;
+    border: 1.5px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 0.6rem 0.9rem;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--texto);
+    background: var(--branco);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .newsletter-input:focus { border-color: var(--laranja); }
+
+  .newsletter-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--texto-suave);
+    cursor: pointer;
+  }
+  .newsletter-checkbox input { accent-color: var(--laranja); cursor: pointer; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--creme);
+    border-top: 1px solid var(--borda);
+    padding: 3.5rem 2rem 1.5rem;
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand h3 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-brand p { font-size: 0.82rem; color: var(--texto-suave); max-width: 200px; }
+
+  .footer-col h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--texto);
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.4rem; }
+  .footer-col ul li a {
+    font-size: 0.82rem;
+    color: var(--texto-suave);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--laranja); }
+
+  .social-links { display: flex; gap: 0.75rem; margin-top: 0.75rem; }
+
+  .social-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1.5px solid var(--borda);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--texto-suave);
+    font-size: 0.85rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .social-btn:hover { border-color: var(--laranja); color: var(--laranja); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--borda);
+    padding-top: 1.25rem;
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--texto-suave);
+  }
+
+  /* ── RESPONSIVO ── */
+  @media (max-width: 768px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-img-placeholder { max-height: 240px; }
+    .sobre-inner { grid-template-columns: 1fr; text-align: center; }
+    .sobre-icon { margin: 0 auto; width: 80px; }
+    .newsletter-inner { grid-template-columns: 1fr; }
+    .newsletter-icon { width: 70px; margin: 0 auto; }
+    .newsletter-content { text-align: center; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .social-links { justify-content: center; }
+    nav { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .autores-grid { grid-template-columns: 1fr; }
+    .livros-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ── ANIMAÇÕES ── */
+  @media (prefers-reduced-motion: no-preference) {
+    .autor-card, .livro-card {
+      animation: fadeUp 0.5s ease both;
+    }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
 </head>
 <body>
 
-    <header class="header-fixo">
-        <div class="container-menu">
-            <nav class="menu-navegação">
-    <ul class="lista-menu">
-        <li><a href="#" class="item-menu">Home</a></li>
-        <li><a href="#" class="item-menu">Sobre</a></li>
-        <li><a href="#" class="item-menu">Contato</a></li>
-    </ul>
-</nav>
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <svg class="logo-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="6" width="18" height="32" rx="3" fill="#E8722A" opacity="0.15" stroke="#E8722A" stroke-width="1.5"/>
+        <rect x="24" y="6" width="18" height="32" rx="3" fill="#E8722A" opacity="0.08" stroke="#DDD4C0" stroke-width="1.5"/>
+        <line x1="2" y1="14" x2="20" y2="14" stroke="#E8722A" stroke-width="1" opacity="0.4"/>
+        <line x1="2" y1="20" x2="20" y2="20" stroke="#E8722A" stroke-width="1" opacity="0.4"/>
+        <line x1="2" y1="26" x2="20" y2="26" stroke="#E8722A" stroke-width="1" opacity="0.4"/>
+        <line x1="24" y1="14" x2="42" y2="14" stroke="#DDD4C0" stroke-width="1"/>
+        <line x1="24" y1="20" x2="42" y2="20" stroke="#DDD4C0" stroke-width="1"/>
+        <line x1="24" y1="26" x2="42" y2="26" stroke="#DDD4C0" stroke-width="1"/>
+      </svg>
+      <div class="logo-text">
+        <h1>Biblioteca do<br>Conhecimento</h1>
+        <p>Autores e livros de não ficção</p>
+      </div>
+    </a>
+    <nav>
+      <a href="#" class="active">Início</a>
+      <a href="#autores">Autores</a>
+      <a href="#livros">Livros</a>
+      <a href="#categorias">Categorias</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button class="btn-busca" aria-label="Buscar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-img-placeholder">
+      <svg viewBox="0 0 80 60" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="1" y="1" width="78" height="58" rx="4"/>
+        <line x1="1" y1="1" x2="79" y2="59"/>
+        <line x1="79" y1="1" x2="1" y2="59"/>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <h2>Conheça autores que transformam conhecimento em livros que <em>inspiram.</em></h2>
+      <p>Explore ideias, pesquisas e histórias que ampliam sua visão de mundo.</p>
+      <div class="hero-btns">
+        <a href="#livros" class="btn-primary">Explorar Livros</a>
+        <a href="#autores" class="btn-secondary">Ver Autores</a>
+      </div>
+      <div class="hero-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre">
+  <div class="sobre-inner">
+    <svg class="sobre-icon" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="35" width="55" height="38" rx="3" fill="#E8722A" opacity="0.12" stroke="#E8722A" stroke-width="1.5"/>
+      <rect x="20" y="25" width="55" height="38" rx="3" fill="#FAF7F2" stroke="#DDD4C0" stroke-width="1.5"/>
+      <rect x="30" y="15" width="55" height="38" rx="3" fill="#FAF7F2" stroke="#DDD4C0" stroke-width="1.5"/>
+      <line x1="38" y1="27" x2="76" y2="27" stroke="#DDD4C0" stroke-width="1.5"/>
+      <line x1="38" y1="33" x2="76" y2="33" stroke="#DDD4C0" stroke-width="1.5"/>
+      <line x1="38" y1="39" x2="68" y2="39" stroke="#DDD4C0" stroke-width="1.5"/>
+    </svg>
+    <div class="sobre-text">
+      <h2>Sobre o Projeto</h2>
+      <p>Reunimos autores e pesquisadores de não ficção e suas principais obras para facilitar o acesso ao conhecimento, à ciência e ao pensamento crítico. Um espaço para quem leva a leitura a sério.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUTORES EM DESTAQUE -->
+<section class="autores" id="autores">
+  <h2 class="section-title"><span>Autores em Destaque</span></h2>
+  <p class="section-subtitle">Pensadores que moldaram a forma como entendemos o mundo</p>
+  <div class="autores-grid">
+    <div class="autor-card">
+      <div class="autor-card-top">
+        <div class="autor-avatar">YH</div>
+        <div class="autor-info">
+          <h3>Yuval Noah Harari</h3>
+          <p>Historiador e escritor</p>
         </div>
-    </header>
+      </div>
+      <p class="autor-card-desc">Autor de Sapiens e Homo Deus, explora a história da humanidade e os desafios do futuro com uma perspectiva única e provocadora.</p>
+      <button class="btn-ver-perfil">Ver perfil</button>
+    </div>
+    <div class="autor-card">
+      <div class="autor-card-top">
+        <div class="autor-avatar">CD</div>
+        <div class="autor-info">
+          <h3>Carol Dweck</h3>
+          <p>Psicóloga</p>
+        </div>
+      </div>
+      <p class="autor-card-desc">Pesquisadora de Stanford, autora de Mindset, que revelou como nossa mentalidade molda nosso sucesso e potencial de crescimento.</p>
+      <button class="btn-ver-perfil">Ver perfil</button>
+    </div>
+    <div class="autor-card">
+      <div class="autor-card-top">
+        <div class="autor-avatar">DK</div>
+        <div class="autor-info">
+          <h3>Daniel Kahneman</h3>
+          <p>Psicólogo · Nobel</p>
+        </div>
+      </div>
+      <p class="autor-card-desc">Prêmio Nobel de Economia, autor de Rápido e Devagar, que desvendou os dois sistemas de pensamento que guiam as decisões humanas.</p>
+      <button class="btn-ver-perfil">Ver perfil</button>
+    </div>
+    <div class="autor-card">
+      <div class="autor-card-top">
+        <div class="autor-avatar">CD</div>
+        <div class="autor-info">
+          <h3>Charles Duhigg</h3>
+          <p>Jornalista e autor</p>
+        </div>
+      </div>
+      <p class="autor-card-desc">Ex-repórter do New York Times, autor de O Poder do Hábito, que revela a ciência por trás de como hábitos são formados e mudados.</p>
+      <button class="btn-ver-perfil">Ver perfil</button>
+    </div>
+    <div class="autor-card">
+      <div class="autor-card-top">
+        <div class="autor-avatar">NT</div>
+        <div class="autor-info">
+          <h3>Nassim Taleb</h3>
+          <p>Estatístico e ensaísta</p>
+        </div>
+      </div>
+      <p class="autor-card-desc">Filósofo do risco e da incerteza, autor de A Lógica do Cisne Negro e Antifrágil, obras que desafiam nossa percepção do imprevisível.</p>
+      <button class="btn-ver-perfil">Ver perfil</button>
+    </div>
+    <div class="autor-card">
+      <div class="autor-card-top">
+        <div class="autor-avatar">JS</div>
+        <div class="autor-info">
+          <h3>James Clear</h3>
+          <p>Escritor e palestrante</p>
+        </div>
+      </div>
+      <p class="autor-card-desc">Autor de Hábitos Atômicos, um dos livros de não ficção mais vendidos da última década, sobre como pequenas mudanças geram grandes resultados.</p>
+      <button class="btn-ver-perfil">Ver perfil</button>
+    </div>
+  </div>
+</section>
 
-    <main>
-        <section class="hero-section">
-            <h1>Conheça autores que transformam conhecimento e livros que <strong>inspiram.</strong></h1>
-        </section>
+<!-- LIVROS EM DESTAQUE -->
+<section class="livros" id="livros">
+  <h2 class="section-title"><span>Livros em Destaque</span></h2>
+  <p class="section-subtitle">Obras essenciais do pensamento contemporâneo</p>
+  <div class="livros-grid">
 
-        <section class="sobre-o-projeto">
-            <h2>Sobre o Projeto</h2>
-            <p>Esta é uma seção sobre o projeto.</p>
-        </section>
+    <div class="livro-card">
+      <div class="livro-capa">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="3" x2="21" y2="21"/><line x1="21" y1="3" x2="3" y2="21"/></svg>
+        <div class="livro-capa-label">Sapiens</div>
+      </div>
+      <div class="livro-info">
+        <p class="livro-autor">Yuval Noah Harari</p>
+        <div class="estrelas">★★★★★</div>
+        <div class="livro-acoes">
+          <button class="btn-ver-livro">Ver livro</button>
+          <button class="btn-salvar" aria-label="Salvar">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
 
-        <section class="secao-pesquisa">
-            <form id="form-pesquisa">
-                <div class="campo">
-                    <label for="termo">Termo de Pesquisa</label>
-                    <input type="text" id="termo" name="termo" placeholder="Digite sua pesquisa">
-                </div>
+    <div class="livro-card">
+      <div class="livro-capa">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="3" x2="21" y2="21"/><line x1="21" y1="3" x2="3" y2="21"/></svg>
+        <div class="livro-capa-label">Mindset</div>
+      </div>
+      <div class="livro-info">
+        <p class="livro-autor">Carol Dweck</p>
+        <div class="estrelas">★★★★★</div>
+        <div class="livro-acoes">
+          <button class="btn-ver-livro">Ver livro</button>
+          <button class="btn-salvar" aria-label="Salvar">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
 
-                <div class="campo">
-                    <label for="categoria">Categoria</label>
-                    <select id="categoria" name="categoria">
-                        <option value="">Selecione uma categoria</option>
-                        <option value="livro">Livro</option>
-                        <option value="autor">Autor</option>
-                        <option value="editora">Editora</option>
-                    </select>
-                </div>
+    <div class="livro-card">
+      <div class="livro-capa">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="3" x2="21" y2="21"/><line x1="21" y1="3" x2="3" y2="21"/></svg>
+        <div class="livro-capa-label">Rápido e Devagar</div>
+      </div>
+      <div class="livro-info">
+        <p class="livro-autor">Daniel Kahneman</p>
+        <div class="estrelas">★★★★½</div>
+        <div class="livro-acoes">
+          <button class="btn-ver-livro">Ver livro</button>
+          <button class="btn-salvar" aria-label="Salvar">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
 
-                <div class="campo">
-                    <label for="tema">Tema</label>
-                    <select id="tema" name="tema">
-                        <option value="">Selecione um tema</option>
-                        <option value="distopia">Distopia</option>
-                        <option value="romance">Romance</option>
-                        <option value="sci-fi">Sci-fi</option>
-                        <option value="misterio">Mistério</option>
-                    </select>
-                </div>
+    <div class="livro-card">
+      <div class="livro-capa">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="3" x2="21" y2="21"/><line x1="21" y1="3" x2="3" y2="21"/></svg>
+        <div class="livro-capa-label">O Poder do Hábito</div>
+      </div>
+      <div class="livro-info">
+        <p class="livro-autor">Charles Duhigg</p>
+        <div class="estrelas">★★★★½</div>
+        <div class="livro-acoes">
+          <button class="btn-ver-livro">Ver livro</button>
+          <button class="btn-salvar" aria-label="Salvar">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
 
-                <button type="submit">Buscar</button>
-            </form>
-        </section>
+  </div>
+</section>
 
-        <section class="secao-newsletter">
-            <form id="form-newsletter">
-                <div class="campo">
-                    <label for="nome">Nome</label>
-                    <input type="text" id="nome" name="nome" placeholder="Digite teu nome">
-                </div>
+<!-- PESQUISA -->
+<section class="pesquisa" id="categorias">
+  <div class="pesquisa-inner">
+    <h2 class="section-title" style="margin-bottom:1.75rem;"><span>Encontre autores e livros</span></h2>
+    <div class="pesquisa-form">
+      <div class="pesquisa-input-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="pesquisa-input" type="text" placeholder="Pesquisar autor ou livro...">
+      </div>
+      <select class="pesquisa-select">
+        <option value="">Categoria</option>
+        <option>Ciência</option>
+        <option>História</option>
+        <option>Psicologia</option>
+        <option>Filosofia</option>
+        <option>Negócios</option>
+        <option>Tecnologia</option>
+      </select>
+      <select class="pesquisa-select">
+        <option value="">Tema</option>
+        <option>Comportamento</option>
+        <option>Liderança</option>
+        <option>Economia</option>
+        <option>Saúde</option>
+        <option>Política</option>
+      </select>
+      <button class="pesquisa-btn">Buscar</button>
+    </div>
+  </div>
+</section>
 
-                <div class="campo">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" placeholder="Digite teu e-mail">
-                </div>
+<!-- NEWSLETTER -->
+<section class="newsletter" id="contato">
+  <div class="newsletter-inner">
+    <svg class="newsletter-icon" viewBox="0 0 90 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="5" y="20" width="70" height="45" rx="4" fill="#FAF7F2" stroke="#DDD4C0" stroke-width="1.5"/>
+      <path d="M5 24l35 22 35-22" stroke="#E8722A" stroke-width="1.5" opacity="0.6"/>
+      <path d="M75 5 L85 15 L62 38" stroke="#E8722A" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+    <div class="newsletter-content">
+      <h2>Receba novidades e indicações</h2>
+      <div class="newsletter-form">
+        <input class="newsletter-input" type="text" placeholder="Seu nome">
+        <input class="newsletter-input" type="email" placeholder="Seu e-mail">
+        <button class="btn-primary" style="white-space:nowrap;">Inscrever-se</button>
+      </div>
+      <label class="newsletter-checkbox">
+        <input type="checkbox" checked>
+        Quero receber dicas de livros e autores por e-mail.
+      </label>
+    </div>
+  </div>
+</section>
 
-                <div class="campo checkbox">
-                    <input type="checkbox" id="consentimento" name="consentimento">
-                    <label for="consentimento">Aceito receber newsletters</label>
-                </div>
-
-                <button type="submit">Inscrever-se</button>
-            </form>
-        </section>
-
-        <article class="card-autor">
-            <img src="public/assets/wireframe.png" alt="Foto do autor">
-            <h3>Nome do Autor</h3>
-            <p>Biografia do autor</p>
-        </article>
-
-        <article class="card-livro">
-            <img src="public/assets/wireframe.png" alt="Título do Livro">
-            <h3>Título do Livro</h3>
-            <p>Descrição do livro</p>
-            <a href="#">Saiba mais</a>
-        </article>
-    </main>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Biblioteca do Conhecimento</h3>
+        <p>Conhecimento que transforma, livros que conectam.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#">Início</a></li>
+          <li><a href="#autores">Autores</a></li>
+          <li><a href="#livros">Livros</a></li>
+          <li><a href="#categorias">Categorias</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categorias</h4>
+        <ul>
+          <li><a href="#">Ciência</a></li>
+          <li><a href="#">História</a></li>
+          <li><a href="#">Psicologia</a></li>
+          <li><a href="#">Filosofia</a></li>
+          <li><a href="#">Negócios</a></li>
+          <li><a href="#">Tecnologia</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Siga-nos</h4>
+        <div class="social-links">
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Twitter/X">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Biblioteca do Conhecimento. Todos os direitos reservados.
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
