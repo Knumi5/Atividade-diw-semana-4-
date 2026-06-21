@@ -10,11 +10,15 @@ Ricardo Santana Kill
 **Matrícula:** 
 893322
 
-**Proposta escolhida:** 
+> **Proposta escolhida:** \
+> 3. Organizações e equipes \
+> Entidade principal: Organização\
+> Entidade secundária: Projeto \
+> Tema: Startup para escolas e turmnas
 
 > ## Descrição do projeto 
 > O projeto acervo da leitura busca promover o uso de livros com alta relevancia para o meio populacional, cinetifico e geral em apenas um lugar, visando o aumento da intelectualidade, incentivando a leitura e criando um metodo que forme pensadores 
-## Escoboço do projeto (Wireframe
+## Escoboço do projeto (Wireframe) 
 <img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/afafc7ba-63af-4fb9-98d6-a69801bd13e6" />
 
 ## Print da homepage do projeto
@@ -22,7 +26,5 @@ Ricardo Santana Kill
 
 
 ## Pendente 
-proposta de projeto escolhida,
-
-
+proposta de projeto escolhida
 
