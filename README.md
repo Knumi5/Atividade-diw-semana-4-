@@ -3,13 +3,17 @@ Realizando a atividade de diw que eu deixei atrasado
 
 
 ## Infos feitas 
-Dados básicos:
+### Dados básicos:
+**Nome:** 
 Ricardo Santana Kill 
-Matrícula : 893322
-Proposta escolhida: 
 
-## Descrição do projeto 
-O projeto acervo da leitura busca promover o uso de livros com alta relevancia para o meio populacional, cinetifico e geral em apenas um lugar, visando o aumento da intelectualidade, incentivando a leitura e criando um metodo que forme pensadores 
+**Matrícula:** 
+893322
+
+**Proposta escolhida:** 
+
+> ## Descrição do projeto 
+> O projeto acervo da leitura busca promover o uso de livros com alta relevancia para o meio populacional, cinetifico e geral em apenas um lugar, visando o aumento da intelectualidade, incentivando a leitura e criando um metodo que forme pensadores 
 ## Escoboço do projeto (Wireframe
 <img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/afafc7ba-63af-4fb9-98d6-a69801bd13e6" />
 
@@ -19,9 +23,6 @@ O projeto acervo da leitura busca promover o uso de livros com alta relevancia p
 
 ## Pendente 
 proposta de projeto escolhida,
-breve descrição sobre o projeto
-Imagem do esboço (wireframe) criado para o projeto
-Print da home-page criada para o projeto
 
 
 
